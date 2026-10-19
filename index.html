@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#050817">
+  <title>نظام أحمد — ذاكر غصب عنك</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="space-bg" aria-hidden="true"><div class="nebula nebula-a"></div><div class="nebula nebula-b"></div><div class="stars"></div></div>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#home">
+        <div class="brand-mark"><span>✦</span><b>أ</b></div>
+        <div><strong>نظام أحمد</strong><small>ذاكر غصب عنك</small></div>
+      </a>
+      <nav class="nav-menu" aria-label="القائمة الرئيسية">
+        <a class="nav-item active" href="#home"><span>⌂</span> الرئيسية</a>
+        <a class="nav-item" href="#planner"><span>▦</span> مخطط المذاكرة</a>
+        <a class="nav-item" href="#reviews"><span>⟳</span> المراجعة المتباعدة <i id="reviewNavCount">0</i></a>
+        <a class="nav-item" href="#tasks"><span>☑</span> المهام</a>
+        <a class="nav-item" href="#subjects"><span>▤</span> المواد الدراسية</a>
+        <a class="nav-item" href="#focus"><span>◷</span> المؤقت</a>
+        <a class="nav-item" href="#stats"><span>♜</span> الإحصائيات</a>
+        <a class="nav-item" href="#media"><span>♫</span> القرآن والموسيقى</a>
+        <a class="nav-item" href="#effects"><span>✧</span> المؤثرات</a>
+        <a class="nav-item" href="#settings"><span>⚙</span> الإعدادات</a>
+      </nav>
+      <div class="quote-card">
+        <span class="quote-mark">”</span>
+        <p>النجاح مش صدفة، ده نتيجة تخطيط والتزام ومحاولة بعد محاولة.</p>
+        <small>— نظام أحمد</small>
+      </div>
+      <div class="level-card">
+        <div class="level-top"><div class="crown">♛</div><div><b id="sideLevel">المستوى 1</b><small id="sideRank">مبتدئ</small></div></div>
+        <div class="xp-track"><span id="sideXpBar"></span></div>
+        <div class="xp-caption"><span id="sideXp">0 XP</span><span id="sideNextXp">100 XP</span></div>
+      </div>
+      <div class="side-character">
+        <img src="assets/shadow-student.svg" alt="رسمة طالب في عالم فضائي" onerror="this.style.display='none'">
+        <div class="online-pill"><span></span><div><b>جاهز للتحدي</b><small>خطوة كل يوم</small></div></div>
+      </div>
+      <button class="logout-link" id="resetProgress">↻ إعادة ضبط التقدم</button>
+    </aside>
+
+    <main class="main-area" id="home">
+      <header class="topbar">
+        <div class="searchbox"><span>⌕</span><input id="searchInput" type="search" placeholder="ابحث عن درس أو مهمة أو مادة..."></div>
+        <div class="topbar-actions"><span class="date-chip" id="todayDate">اليوم</span><button class="icon-btn" id="themeGlow" title="تغيير شدة الإضاءة">☼</button><button class="profile-chip" id="profileButton"><span class="avatar">أ</span><span><b id="profileName">أحمد</b><small id="profileLevel">المستوى 1</small></span><span>⌄</span></button></div>
+      </header>
+
+      <section class="hero-grid">
+        <div class="hero-banner">
+          <img src="assets/cosmic-student.svg" alt="" class="hero-art" onerror="this.style.display='none'">
+          <div class="hero-shade"></div>
+          <div class="hero-content">
+            <span class="eyebrow">✦ رحلتك نحو التفوق تبدأ هنا</span>
+            <h1>مستقبلك بيبدأ من هنا،<br><em>ذاكر غصب عنك!</em></h1>
+            <p>كل دقيقة مذاكرة بتقربك من حلمك. ركّز، استمر، وخلّي إنجازك يتكلم.</p>
+            <button class="primary-btn" id="heroStart">ابدأ جلسة المذاكرة <span>▷</span></button>
+          </div>
+          <div class="hero-date"><span>✧</span><div><b id="heroDay">السبت</b><small id="heroDate">ابدأ أسبوعًا جديدًا</small></div></div>
+        </div>
+        <div class="stats-stack">
+          <article class="metric-card purple"><div class="metric-icon">ϟ</div><div class="metric-label">نقاط الخبرة</div><strong id="xpPoints">0 <small>XP</small></strong><small class="metric-note">استمر لتحصل على المزيد</small><div class="mini-track"><span id="xpBar"></span></div></article>
+          <article class="metric-card blue"><div class="metric-icon">✧</div><div class="metric-label">المستوى</div><strong id="levelValue">1</strong><small class="metric-note" id="levelCaption">مبتدئ</small><div class="mini-track"><span id="levelBar"></span></div></article>
+          <article class="metric-card cyan"><div class="metric-icon">◷</div><div class="metric-label">دقائق المذاكرة</div><strong id="studyMinutes">0</strong><small class="metric-note">إجمالي الدقائق المكتملة</small><div class="mini-track"><span id="timeBar"></span></div></article>
+          <article class="metric-card green"><div class="metric-icon">☑</div><div class="metric-label">المهام المكتملة</div><strong id="completedTasks">0</strong><small class="metric-note" id="taskStatCaption">من 0 مهمة</small><div class="mini-track"><span id="tasksBar"></span></div></article>
+        </div>
+      </section>
+
+      <section class="dashboard-grid">
+        <section class="panel schedule-panel" id="planner">
+          <div class="panel-heading"><div><span class="panel-icon cyan-text">▦</span><div><h2>جدول الأسبوع</h2><p>دروسك الثابتة وأيام الجيم</p></div></div><span class="tiny-badge">أولى باكالوريا</span></div>
+          <div id="weekSchedule" class="week-list"></div>
+        </section>
+
+        <section class="panel today-panel">
+          <div class="panel-heading"><div><span class="panel-icon blue-text">◎</span><div><h2>خطة اليوم</h2><p id="planDate">خطة قابلة للتعديل</p></div></div><button class="small-outline" id="editPlanBtn">تعديل الوقت</button></div>
+          <div class="timeline" id="dailyTimeline"></div>
+          <div class="prayer-note"><span>☾</span><div><b>الصلاة في وقتها</b><small>أضف أوقات الصلاة المحلية إلى يومك، وخد استراحة للصلاة بعيدًا عن المؤقّت.</small></div></div>
+        </section>
+
+        <section class="panel reviews-panel" id="reviews">
+          <div class="panel-heading"><div><span class="panel-icon purple-text">⟳</span><div><h2>المراجعة المتباعدة</h2><p>راجع في الوقت المناسب لتثبيت المعلومة</p></div></div><span class="count-pill" id="dueCount">0 مستحقة</span></div>
+          <div id="reviewList" class="review-list"></div>
+          <button class="wide-outline" id="addLessonShortcut">＋ تسجيل درس جديد للمراجعة</button>
+        </section>
+
+        <section class="panel focus-panel" id="focus">
+          <div class="panel-heading"><div><span class="panel-icon purple-text">◉</span><div><h2>جلسة التركيز</h2><p>25 دقيقة تركيز، ثم 5 دقائق راحة</p></div></div><span class="live-pill"><i></i> جاهز</span></div>
+          <div class="timer-layout">
+            <div class="timer-ring" id="timerRing"><div class="timer-core"><span class="timer-symbol">✧</span><strong id="timerDisplay">25:00</strong><small id="timerStatus">جلسة مذاكرة</small></div></div>
+            <div class="timer-side"><button class="mode-btn active" data-mode="focus">◉ تركيز <small>25 دقيقة</small></button><button class="mode-btn" data-mode="break">☾ راحة <small>5 دقائق</small></button><button class="mode-btn" id="timerReset">↻ إعادة ضبط</button></div>
+          </div>
+          <button class="primary-btn timer-start" id="timerStart">ابدأ الآن <span>▷</span></button>
+          <p class="timer-tip" id="timerMessage">ابعد المشتتات، وجهّز كتابك، وابدأ خطوة صغيرة.</p>
+        </section>
+
+        <section class="panel tasks-panel" id="tasks">
+          <div class="panel-heading"><div><span class="panel-icon cyan-text">☑</span><div><h2>مهامي اليومية</h2><p>كل مهمة تنجزها تقرّبك من هدفك</p></div></div><span class="count-pill" id="taskCounter">0 / 0</span></div>
+          <form id="taskForm" class="task-form">
+            <input id="taskInput" type="text" maxlength="100" placeholder="اكتب المهمة اللي هتنجزها..." required>
+            <select id="taskSubject" aria-label="المادة"><option value="عام">عام</option><option>فرنساوي</option><option>رياضيات</option><option>فلسفة</option><option>إنجليزي</option><option>تاريخ</option><option>علوم متكاملة</option><option>برمجة</option><option>عربي</option></select>
+            <select id="taskDuration" aria-label="الوقت"><option value="15">15 د</option><option value="25" selected>25 د</option><option value="45">45 د</option><option value="60">60 د</option></select>
+            <button class="primary-btn" type="submit">＋ إضافة</button>
+          </form>
+          <div class="task-filters"><button class="filter-btn active" data-filter="all">الكل</button><button class="filter-btn" data-filter="open">المتبقي</button><button class="filter-btn" data-filter="done">المكتمل</button><button class="text-btn" id="clearDone">حذف المكتمل</button></div>
+          <div class="task-list" id="taskList"></div>
+          <div class="tasks-footer"><span id="tasksFooterText">ابدأ بمهمة واحدة صغيرة</span><div class="progress-line"><span id="taskProgress"></span></div></div>
+        </section>
+
+        <section class="panel subjects-panel" id="subjects">
+          <div class="panel-heading"><div><span class="panel-icon cyan-text">▤</span><div><h2>المواد الدراسية</h2><p>اختار مادة عشان تضيف لها مهمة</p></div></div></div>
+          <div class="subject-grid" id="subjectGrid">
+            <button class="subject-tile s-purple" data-subject="فرنساوي"><span>Ａ</span><b>فرنساوي</b><small>لغة ومفردات</small></button>
+            <button class="subject-tile s-blue" data-subject="رياضيات"><span>∑</span><b>رياضيات</b><small>فهم وحل مسائل</small></button>
+            <button class="subject-tile s-pink" data-subject="فلسفة"><span>◈</span><b>فلسفة</b><small>فهم وتحليل</small></button>
+            <button class="subject-tile s-cyan" data-subject="إنجليزي"><span>Ab</span><b>إنجليزي</b><small>قراءة وقواعد</small></button>
+            <button class="subject-tile s-orange" data-subject="تاريخ"><span>⌛</span><b>تاريخ</b><small>أحداث وتواريخ</small></button>
+            <button class="subject-tile s-green" data-subject="علوم متكاملة"><span>⚗</span><b>علوم متكاملة</b><small>فهم وتطبيق</small></button>
+            <button class="subject-tile s-violet" data-subject="برمجة"><span>&lt;/&gt;</span><b>برمجة</b><small>مشاريع وتدريب</small></button>
+          </div>
+        </section>
+
+        <section class="panel progress-panel" id="stats">
+          <div class="panel-heading"><div><span class="panel-icon purple-text">⌁</span><div><h2>تطورك الأسبوعي</h2><p>الدقائق اللي سجلتها من جلسات التركيز</p></div></div></div>
+          <div class="chart-wrap"><div class="chart-y"><span>120</span><span>90</span><span>60</span><span>30</span><span>0</span></div><div class="bar-chart" id="weeklyChart"></div></div>
+          <div class="chart-legend"><span><i class="legend-cyan"></i> دقائق مذاكرة</span><span><i class="legend-purple"></i> هدفك الأسبوعي</span></div>
+        </section>
+
+        <section class="panel lesson-panel">
+          <div class="panel-heading"><div><span class="panel-icon purple-text">✧</span><div><h2>تسجيل درس جديد</h2><p>الموقع ينشئ مواعيد مراجعة تلقائيًا</p></div></div></div>
+          <form id="lessonForm" class="lesson-form">
+            <label>اسم الدرس<input id="lessonTitle" maxlength="100" placeholder="مثال: المعادلات التربيعية" required></label>
+            <label>المادة<select id="lessonSubject"><option>فرنساوي</option><option>رياضيات</option><option>فلسفة</option><option>إنجليزي</option><option>تاريخ</option><option>علوم متكاملة</option><option>برمجة</option><option>عربي</option></select></label>
+            <label>تاريخ الدرس<input id="lessonDate" type="date" required></label>
+            <button class="primary-btn" type="submit">إنشاء خطة المراجعة</button>
+          </form>
+          <div class="lesson-records" id="lessonRecords"></div>
+        </section>
+
+        <section class="panel media-panel" id="media">
+          <div class="panel-heading"><div><span class="panel-icon purple-text">♫</span><div><h2>ركن السكينة والتركيز</h2><p>شغّل تلاوة أو أجواء هادئة أثناء المذاكرة</p></div></div><span class="tiny-badge">اختيارك</span></div>
+          <div class="media-search-card">
+            <div class="media-search-copy"><span class="media-search-icon">⌕</span><div><h3>اكتب الاسم وابحث عن الصوت</h3><p>ابحث عن أغنية لتشغيل معاينة رسمية، أو اكتب اسم سورة وقارئ لتشغيل التلاوة هنا.</p></div></div>
+            <form id="mediaSearchForm" class="media-search-form">
+              <input id="mediaSearchQuery" class="media-input" type="search" maxlength="160" placeholder="مثال: سورة الرحمن مشاري العفاسي أو اسم أغنية..." required>
+              <button class="primary-btn" type="submit">⌕ ابحث عن الصوت</button>
+            </form>
+            <div class="media-search-actions">
+              <button class="small-outline" type="button" id="searchYouTube">▶ بحث في YouTube</button>
+              <button class="small-outline" type="button" id="searchQuran">۞ بحث في القرآن الكريم</button>
+              <button class="small-outline" type="button" id="searchWeb">⌕ بحث عام</button>
+            </div>
+            <p class="media-hint">نتائج الأغاني تستخدم معاينات متاحة من Apple Music، وقد تكون مدتها قصيرة. نتائج القرآن تُشغَّل داخل الموقع من مصدر التلاوات. بعض النتائج قد لا تتوفر في بلدك.</p><div id="mediaResults" class="media-results" aria-live="polite"></div>
+          </div>
+          <div class="media-columns">
+            <div class="media-card quran-card">
+              <div class="media-art quran-art">۞</div><h3>القرآن الكريم</h3><p>اكتب اسم السورة والقارئ في مربع البحث بالأعلى، أو شغّل ملفًا من جهازك.</p>
+              <label class="media-label" for="quranUrl">رابط ملف التلاوة MP3</label><input id="quranUrl" class="media-input" type="url" placeholder="الصق رابط MP3 مباشر هنا">
+              <div class="media-actions"><button class="primary-btn" id="playQuran">▶ تشغيل التلاوة</button><label class="file-btn">اختيار ملف صوتي<input id="quranFile" type="file" accept="audio/*" hidden></label></div>
+              <audio id="quranAudio" controls preload="none" class="audio-player"></audio>
+              <a class="external-audio-link" href="https://mp3quran.net/ar" target="_blank" rel="noopener">فتح مكتبة القرّاء والسور على MP3 Quran ↗</a>
+            </div>
+            <div class="media-card music-card">
+              <div class="media-art music-art">♫</div><h3>موسيقى هادئة للتركيز</h3><p>ابحث عن أغنية بالأعلى لتشغيل معاينة متاحة، أو استخدم الأجواء الهادئة المولّدة داخل الموقع.</p>
+              <div class="sound-visual" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+              <div class="media-actions"><button class="primary-btn" id="ambientToggle">▶ تشغيل الأجواء</button><button class="small-outline" id="ambientStop">■ إيقاف</button></div>
+              <label class="volume-label">مستوى الصوت <input id="ambientVolume" type="range" min="0" max="30" value="10"></label>
+              <small class="media-hint">احترم وقت المذاكرة؛ خفّض الصوت لو بيشتتك، وأوقف النغمات عند تشغيل القرآن.</small>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel effects-panel" id="effects">
+          <div class="panel-heading"><div><span class="panel-icon cyan-text">✧</span><div><h2>مركز المؤثرات</h2><p>ظبط شكل الموقع على مزاجك</p></div></div></div>
+          <div class="effects-grid">
+            <label class="effect-option"><span><b>النجوم المتحركة</b><small>حركة خفيفة في الخلفية</small></span><input id="starsToggle" type="checkbox" checked></label>
+            <label class="effect-option"><span><b>توهج النيون</b><small>إضاءة بنفسجي وأزرق حول البطاقات</small></span><input id="neonToggle" type="checkbox" checked></label>
+            <label class="effect-option"><span><b>حركة البطاقات</b><small>حركة بسيطة عند المرور عليها</small></span><input id="motionToggle" type="checkbox" checked></label>
+            <label class="effect-option"><span><b>تقليل الحركة</b><small>لراحة العين أو الأجهزة الأبطأ</small></span><input id="reduceMotion" type="checkbox"></label>
+          </div>
+          <p class="settings-note">الإعدادات دي بتغيّر شكل الصفحة فقط، ومش بتأثر على المهام أو نقاطك.</p>
+        </section>
+
+        <section class="panel settings-panel" id="settings">
+          <div class="panel-heading"><div><span class="panel-icon blue-text">⚙</span><div><h2>إعدادات يومك</h2><p>عدّل الخطة على مواعيدك الفعلية</p></div></div></div>
+          <form id="settingsForm" class="settings-form">
+            <label>الاستيقاظ<input type="time" id="wakeTime" value="05:00" required></label>
+            <label>نهاية المدرسة<input type="time" id="schoolEnd" value="14:00" required></label>
+            <label>موعد الجيم<input type="time" id="gymTime" value="17:00" required></label>
+            <label>هدف المذاكرة (دقيقة)<input type="number" id="dailyGoal" min="15" max="600" value="120" required></label>
+            <button class="primary-btn" type="submit">حفظ الإعدادات</button>
+          </form>
+          <p class="settings-note">مواعيد الصلاة تتغير حسب موقعك والتاريخ؛ أضفها يدويًا حسب تقويم الصلاة المحلي. لا يتم إرسال موقعك لأي مكان.</p>
+        </section>
+      </section>
+      <footer class="footer"><span>✦ نظام أحمد — ذاكر غصب عنك</span><span>كل خطوة صغيرة بتصنع فرقًا كبيرًا.</span><span>أولى باكالوريا</span></footer>
+    </main>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="script.js"></script>
+</body>
+</html>
